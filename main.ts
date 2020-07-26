@@ -15,7 +15,7 @@ type RegExpAction = {
 }
 
 const regExpActions: RegExpAction[] = [{
-  regex: /^%(?<dices>[1-9]?\d)\s*(\!(?<hunger>[1-5]))?\s*(\*(?<difficulty>[2-9]))?\s*(?<description>.*)/g,
+  regex: /^%\s*(\+(?<skill>[1-9]?\d))?\s*(\*\+(?<proficiency>[1-9]?\d))?\s*(\+\+(?<enlargement>[1-9]?\d))?\s*(\-(?<difficulty>[1-9]?\d))?\s*(\*\-(?<challenge>[1-9]?\d))?\s*(\-\-(?<setback>[1-9]?\d))?\s*(?<description>.*)/g,
   action: rollAction
 }];
 
