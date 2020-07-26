@@ -1,0 +1,6 @@
+{
+   "imports": {
+      "config/": "https://deno.land/x/config/",
+      "katana/": "https://deno.land/x/katana/"
+   }
+}
