@@ -1,4 +1,5 @@
 import { Message } from "katana/mod.ts";
+import { diceRollManager } from "../diceRollManager.ts";
 
 const regExpValues = /(\+(?<skill>[1-9]?\d))*(\*\+(?<proficiency>[1-9]?\d))*(\+\+(?<enlargement>[1-9]?\d))*(\-(?<difficulty>[1-9]?\d))*(\*\-(?<challenge>[1-9]?\d))*(\-\-(?<setback>[1-9]?\d))*/g
 
@@ -6,7 +7,7 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
     for(let match of matchArray) {
         if (match.groups) {
 
-            let input = {
+            let input: diceRollManager.RollInput = {
                 skill: 0,
                 proficiency: 0,
                 enlargement: 0,
@@ -43,7 +44,9 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
                 }      
             } 
             
-            console.log(input);
+            let result = diceRollManager.roll(input);
+
+            console.log(result);
         }      
     }
 }
