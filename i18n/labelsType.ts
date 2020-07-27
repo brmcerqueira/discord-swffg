@@ -4,5 +4,12 @@ export type DicePoolType = {
 }
 
 export type LabelsType = {
-    welcome: string
+    welcome: string,
+    player: string,
+    skill: string,
+    proficiency: string,
+    enlargement: string,
+    difficulty: string,
+    challenge: string,
+    setback: string
 }
