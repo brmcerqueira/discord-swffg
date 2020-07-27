@@ -6,7 +6,7 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
     for(let match of matchArray) {
         if (match.groups) {
 
-            let data = {
+            let input = {
                 skill: 0,
                 proficiency: 0,
                 enlargement: 0,
@@ -18,32 +18,32 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
             for(let matchValues of match.groups.data.matchAll(regExpValues)) {
                 if (matchValues.groups) {
                     if (matchValues.groups["skill"]) {
-                        data.skill += parseInt(matchValues.groups["skill"]);
+                        input.skill += parseInt(matchValues.groups["skill"]);
                     }
 
                     if (matchValues.groups["proficiency"]) {
-                        data.proficiency += parseInt(matchValues.groups["proficiency"]);
+                        input.proficiency += parseInt(matchValues.groups["proficiency"]);
                     }
 
                     if (matchValues.groups["enlargement"]) {
-                        data.enlargement += parseInt(matchValues.groups["enlargement"]);
+                        input.enlargement += parseInt(matchValues.groups["enlargement"]);
                     }
 
                     if (matchValues.groups["difficulty"]) {
-                        data.difficulty += parseInt(matchValues.groups["difficulty"]);
+                        input.difficulty += parseInt(matchValues.groups["difficulty"]);
                     }
 
                     if (matchValues.groups["challenge"]) {
-                        data.challenge += parseInt(matchValues.groups["challenge"]);
+                        input.challenge += parseInt(matchValues.groups["challenge"]);
                     }
 
                     if (matchValues.groups["setback"]) {
-                        data.setback += parseInt(matchValues.groups["setback"]);
+                        input.setback += parseInt(matchValues.groups["setback"]);
                     }
                 }      
             } 
             
-            console.log(data);
+            console.log(input);
         }      
     }
 }
