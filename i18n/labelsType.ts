@@ -11,5 +11,12 @@ export type LabelsType = {
     enlargement: string,
     difficulty: string,
     challenge: string,
-    setback: string
+    setback: string,
+    textType: string,
+    success: string,
+    advantage: string,
+    triumph: string,
+    failure: string,
+    threat: string,
+    despair: string
 }

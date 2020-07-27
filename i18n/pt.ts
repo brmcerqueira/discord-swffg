@@ -8,5 +8,12 @@ export const pt: LabelsType = {
     enlargement: "{0} dado(s) de Ampliação",
     difficulty: "{0} dado(s) de Dificuldade",
     challenge: "{0} dado(s) de Desafio",
-    setback: "{0} dado(s) de Contratempo"
+    setback: "{0} dado(s) de Contratempo",
+    textType: "md",
+    success: "< Sucesso: {0} >",
+    advantage: "# Vantagem: {0}",
+    triumph: "> Triunfo: {0}",
+    failure: "< Fracasso: {0} >",
+    threat: "# Ameaça: {0}",
+    despair: "> Desespero: {0}"
 };

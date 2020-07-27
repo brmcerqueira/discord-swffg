@@ -63,30 +63,30 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
             }
 
             if (result.skill) {
-                embed.addField(format(labels.skill, result.skill.amount), parsePositiveResult(result.skill), true);
+                embed.addField(format(labels.skill, result.skill.amount), parsePositiveResult(result.skill));
             }
 
             if (result.proficiency) {
-                embed.addField(format(labels.proficiency, result.proficiency.amount), parsePositiveResult(result.proficiency), true);
+                embed.addField(format(labels.proficiency, result.proficiency.amount), parsePositiveResult(result.proficiency));
             }
 
             if (result.enlargement) {
-                embed.addField(format(labels.enlargement, result.enlargement.amount), parsePositiveResult(result.enlargement), true);
+                embed.addField(format(labels.enlargement, result.enlargement.amount), parsePositiveResult(result.enlargement));
             }
 
             if (result.difficulty) {
-                embed.addField(format(labels.difficulty, result.difficulty.amount), parseNegativeResult(result.difficulty), true);
+                embed.addField(format(labels.difficulty, result.difficulty.amount), parseNegativeResult(result.difficulty));
             }
 
             if (result.challenge) {
-                embed.addField(format(labels.challenge, result.challenge.amount), parseNegativeResult(result.challenge), true);
+                embed.addField(format(labels.challenge, result.challenge.amount), parseNegativeResult(result.challenge));
             }
 
             if (result.setback) {
-                embed.addField(format(labels.setback, result.setback.amount), parseNegativeResult(result.setback), true);
+                embed.addField(format(labels.setback, result.setback.amount), parseNegativeResult(result.setback));
             }
 
-            embed.addField(labels.player, `<@${message.user.id}>`, true);
+            embed.addField(labels.player, `<@${message.user.id}>`);
 
             message.channel.send(embed);
         }      
@@ -94,13 +94,47 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
 }
 
 function parseResult(result: diceRollManager.DiceResult): string {
-    return JSON.stringify(result);
+    let text = `\`\`\`${labels.textType}\n`;
+    text += buildPositiveText(result);
+    text += buildNegativeText(result);
+    text += "\`\`\`";
+    return text;
 }
 
-function parsePositiveResult(result: diceRollManager.PositiveRollResult): string {
-    return JSON.stringify(result);
+function parsePositiveResult(result: diceRollManager.PositiveDiceResult): string {
+    let text = `\`\`\`${labels.textType}\n`;
+    text += buildPositiveText(result);
+    text += "\`\`\`";
+    return text;
 }
 
-function parseNegativeResult(result: diceRollManager.NegativeRollResult): string {
-    return JSON.stringify(result);
+function parseNegativeResult(result: diceRollManager.NegativeDiceResult): string {
+    let text = `\`\`\`${labels.textType}\n`;
+    text += buildNegativeText(result);
+    text += "\`\`\`";
+    return text;
+}
+
+function buildPositiveText(result: diceRollManager.PositiveDiceResult): string {
+    let text = "";
+    text += `${format(labels.success, result.success)}\n`;
+    if (result.advantage > 0) {
+        text += `${format(labels.advantage, result.advantage)}\n`;
+    } 
+    if (result.triumph > 0) {
+        text += `${format(labels.triumph, result.triumph)}\n`;
+    }
+    return text;
+}
+
+function buildNegativeText(result: diceRollManager.NegativeDiceResult): string {
+    let text = "";   
+    text += `${format(labels.failure, result.failure)}\n`;
+    if (result.threat > 0) {
+        text += `${format(labels.threat, result.threat)}\n`;
+    } 
+    if (result.despair > 0) {
+        text += `${format(labels.despair, result.despair)}\n`;
+    }
+    return text;
 }
