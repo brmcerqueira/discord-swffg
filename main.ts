@@ -2,6 +2,8 @@ import { Client, Message } from "katana/mod.ts";
 import { labels } from "./i18n/labels.ts";
 import { config } from "./config.ts";
 import { rollAction } from "./actions/rollAction.ts";
+import { rollForceAction } from "./actions/rollForceAction.ts";
+import { rollPercentageAction } from "./actions/rollPercentageAction.ts";
 
 const client = new Client();
 
@@ -15,8 +17,16 @@ type RegExpAction = {
 }
 
 const regExpActions: RegExpAction[] = [{
+  regex: /^\$/g,
+  action: rollForceAction
+},
+{
   regex: /^%\s(?<data>.*)/g,
   action: rollAction
+},
+{
+  regex: /^%/g,
+  action: rollPercentageAction
 }];
 
 client.on('message', (message: Message) => {

@@ -6,6 +6,7 @@ export type DicePoolType = {
 export type LabelsType = {
     welcome: string,
     player: string,
+    value: string,
     skill: string,
     proficiency: string,
     enlargement: string,
@@ -18,5 +19,8 @@ export type LabelsType = {
     triumph: string,
     failure: string,
     threat: string,
-    despair: string
+    despair: string,
+    lightForceLabel: string,
+    darkForceLabel: string,
+    percentageLabel: string
 }
