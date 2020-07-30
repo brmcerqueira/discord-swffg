@@ -97,6 +97,8 @@ export module diceRollManager {
         total.success += result.success;
         total.advantage += result.advantage;
         total.triumph += result.triumph;
+        total.failure -= result.success;
+        total.threat -= result.advantage;
 
         return result;
     }
@@ -117,6 +119,7 @@ export module diceRollManager {
         total.threat += result.threat;
         total.despair += result.despair;
         total.success -= result.failure;
+        total.advantage -= result.threat;
 
         return result;
     }

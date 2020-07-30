@@ -1,6 +1,5 @@
-import { Message } from "katana/mod.ts";
+import { Message, MessageEmbed } from "katana/mod.ts";
 import { diceRollManager } from "../diceRollManager.ts";
-import { MessageEmbed } from "katana/mod.ts";
 import { labels } from "../i18n/labels.ts";
 import { format } from "../format.ts";
 
