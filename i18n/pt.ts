@@ -10,14 +10,17 @@ export const pt: LabelsType = {
     difficulty: "{0} dado(s) de Dificuldade",
     challenge: "{0} dado(s) de Desafio",
     setback: "{0} dado(s) de Contratempo",
-    textType: "md",
-    success: "[Sucesso][{0}]",
-    advantage: "# Vantagem: {0}",
-    triumph: "< Triunfo: {0} >",
-    failure: "[Fracasso][{0}]",
-    threat: "# Ameaça: {0}",
-    despair: "< Desespero: {0} >",
     lightForceLabel: "Você ascendeu para o lado da luz!",
     darkForceLabel: "Você caiu para o lado da negro!",
-    percentageLabel: "Percentual"
+    percentageLabel: "Percentual",
+    rollActionParse: {
+        textType: "md",
+        success: "[Sucesso][{0}]",
+        advantage: "# Vantagem: {0}",
+        triumph: "< Triunfo: {0} >",
+        failure: "[Fracasso][{0}]",
+        threat: "# Ameaça: {0}",
+        despair: "< Desespero: {0} >",
+        noContent: "[Não][Aplicável]"
+    }
 };

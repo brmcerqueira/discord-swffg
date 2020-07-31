@@ -13,14 +13,17 @@ export type LabelsType = {
     difficulty: string,
     challenge: string,
     setback: string,
-    textType: string,
-    success: string,
-    advantage: string,
-    triumph: string,
-    failure: string,
-    threat: string,
-    despair: string,
     lightForceLabel: string,
     darkForceLabel: string,
-    percentageLabel: string
+    percentageLabel: string,
+    rollActionParse: {
+        textType: string,
+        success: string,
+        advantage: string,
+        triumph: string,
+        failure: string,
+        threat: string,
+        despair: string,
+        noContent: string
+    }
 }

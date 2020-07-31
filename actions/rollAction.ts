@@ -92,48 +92,56 @@ export function rollAction(message: Message, matchArray: RegExpMatchArray[]) {
     }
 }
 
-function parseResult(result: diceRollManager.DiceResult): string {
-    let text = `\`\`\`${labels.textType}\n`;
-    text += buildPositiveText(result);
-    text += buildNegativeText(result);
-    text += "\`\`\`";
-    return text;
-}
-
-function parsePositiveResult(result: diceRollManager.PositiveDiceResult): string {
-    let text = `\`\`\`${labels.textType}\n`;
-    text += buildPositiveText(result);
-    text += "\`\`\`";
-    return text;
-}
-
-function parseNegativeResult(result: diceRollManager.NegativeDiceResult): string {
-    let text = `\`\`\`${labels.textType}\n`;
-    text += buildNegativeText(result);
+function buildContent(getContent: () => string): string {
+    let text = `\`\`\`${labels.rollActionParse.textType}\n`;
+    let content = getContent();
+    text += content == '' ? `${labels.rollActionParse.noContent}\n` : content;
     text += "\`\`\`";
     return text;
 }
 
 function buildPositiveText(result: diceRollManager.PositiveDiceResult): string {
     let text = "";
-    text += `${format(labels.success, result.success)}\n`;
+    if (result.success > 0) {
+        text += `${format(labels.rollActionParse.success, result.success)}\n`;
+    }
     if (result.advantage > 0) {
-        text += `${format(labels.advantage, result.advantage)}\n`;
+        text += `${format(labels.rollActionParse.advantage, result.advantage)}\n`;
     } 
     if (result.triumph > 0) {
-        text += `${format(labels.triumph, result.triumph)}\n`;
+        text += `${format(labels.rollActionParse.triumph, result.triumph)}\n`;
     }
     return text;
 }
 
 function buildNegativeText(result: diceRollManager.NegativeDiceResult): string {
     let text = "";   
-    text += `${format(labels.failure, result.failure)}\n`;
+    if (result.failure > 0) {
+        text += `${format(labels.rollActionParse.failure, result.failure)}\n`;
+    } 
     if (result.threat > 0) {
-        text += `${format(labels.threat, result.threat)}\n`;
+        text += `${format(labels.rollActionParse.threat, result.threat)}\n`;
     } 
     if (result.despair > 0) {
-        text += `${format(labels.despair, result.despair)}\n`;
+        text += `${format(labels.rollActionParse.despair, result.despair)}\n`;
     }
     return text;
+}
+
+function parseResult(result: diceRollManager.DiceResult): string {
+    return buildContent(() => {
+        return buildPositiveText(result) + buildNegativeText(result);
+    });
+}
+
+function parsePositiveResult(result: diceRollManager.PositiveDiceResult): string {
+    return buildContent(() => {
+        return buildPositiveText(result);
+    });
+}
+
+function parseNegativeResult(result: diceRollManager.NegativeDiceResult): string {
+    return buildContent(() => {
+        return buildNegativeText(result);
+    });
 }
